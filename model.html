@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D Model | Carbon mOD</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="image (3).png">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <p>Carbon <span>mOD</span> <a href="index.html"><img src="image (2).png" alt="Logo"></a> </p>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="model.html" class="active">Model</a>
+      <a href="team.html">Team</a>
+      <a href="join.html">Join</a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <main class="model-container">
+    <div class="model-header">
+      <h1>Attassa Reactor v1.0</h1>
+      <p>Explore the internal architecture of our primary carbon recovery unit. Interactive hotspots show the filtration
+        mesh and heat exchange modules.</p>
+    </div>
+    <div class="sketchfab-embed-wrapper">
+      <iframe title="Attassa" class="model-iframe" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+        webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking"
+        src="https://sketchfab.com/models/9e9ee8c63ad44a6180e16bd5ef9a7c88/embed?autospin=0.5&autostart=1&ui_controls=1&ui_infos=0">
+      </iframe>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Join Us | Carbon mOD</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="image (3).png">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <p>Carbon <span>mOD</span> <a href="index.html"><img src="image (2).png" alt="Logo"></a> </p>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="model.html">Model</a>
+            <a href="team.html">Team</a>
+            <a href="join.html" class="active">Join</a>
+        </nav>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main class="form-section">
+        <div class="form-container">
+            <div class="form-content">
+                <h1>Partner With <span style="color: var(--primary-color);">Carbon mOD</span></h1>
+                <p>Ready to revolutionize industrial emissions? Fill out the form below and our team will be in touch
+                    within 24 hours.</p>
+
+                <form class="partnership-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Name goes here ..." required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="name@mail.com" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company / Institution</label>
+                        <input type="text" id="company" name="company" placeholder="Lexa Industries" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>How would you like to collaborate?</label>
+                        <div class="custom-select" id="customSelect">
+                            <div class="custom-select__trigger">
+                                <span id="selectDisplay">Industrial Integration</span>
+                                <div class="custom-select__arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="custom-options">
+                                <div class="custom-option selected" data-value="industrial">Industrial Integration</div>
+                                <div class="custom-option" data-value="research">Research Partnership</div>
+                                <div class="custom-option" data-value="investment">Investment Inquiry</div>
+                                <div class="custom-option" data-value="other">Other</div>
+                            </div>
+                        </div>
+                        <!-- Hidden real select for form submission -->
+                        <input type="hidden" id="collaboration" name="collaboration" value="industrial" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Tell us more about your interest..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Send
+                        Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
+    </footer>
+
+    <script>
+        // === Hamburger Menu ===
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // === Custom Animated Select ===
+        const customSelect = document.getElementById('customSelect');
+        const selectDisplay = document.getElementById('selectDisplay');
+        const hiddenInput = document.getElementById('collaboration');
+        const options = customSelect.querySelectorAll('.custom-option');
+
+        // Toggle dropdown open/close
+        customSelect.querySelector('.custom-select__trigger').addEventListener('click', (e) => {
+            customSelect.classList.toggle('open');
+        });
+
+        // Option selection with smooth feedback
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                // Update display text
+                selectDisplay.textContent = option.textContent;
+                // Update hidden input for form submission
+                hiddenInput.value = option.dataset.value;
+                // Update selected state
+                options.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                // Close dropdown
+                customSelect.classList.remove('open');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                customSelect.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+
+</html>
