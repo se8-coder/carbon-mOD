@@ -56,20 +56,40 @@ main {
   font-size: 1.8rem;
   font-weight: 700;
   color: #fff;
+}
+
+.logo-link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.3px;
+  transition: opacity 0.3s ease;
 }
 
-.logo span {
-  color: var(--primary-color);
+.logo-link:hover {
+  opacity: 0.85;
 }
 
-.logo img {
+.logo-link img {
   width: 40px;
   height: 40px;
   border-radius: 8px;
   object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logo-link span {
+  color: #fff;
+  white-space: nowrap;
+}
+
+.logo-link em {
+  font-style: normal;
+  color: var(--primary-color);
 }
 
 .nav-links {
@@ -873,15 +893,15 @@ main {
 /* 3D Model Page Specific */
 .model-container {
   padding-top: 80px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .model-header {
-  padding: 40px 5% 20px;
+  padding: 30px 5% 20px;
   background: #000;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .model-header h1 {
@@ -897,12 +917,14 @@ main {
 }
 
 .sketchfab-embed-wrapper {
-  flex: 1;
   width: 100%;
+  flex-shrink: 0;
+  /* JS will set the height */
 }
 
 .model-iframe {
   width: 100%;
   height: 100%;
+  display: block;
   border: none;
 }

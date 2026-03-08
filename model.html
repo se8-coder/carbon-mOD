@@ -19,7 +19,10 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <p>Carbon <span>mOD</span> <a href="index.html"><img src="image (2).png" alt="Logo"></a> </p>
+      <a href="index.html" class="logo-link">
+        <img src="image (2).png" alt="Carbon mOD Logo">
+        <span>Carbon <em>mOD</em></span>
+      </a>
     </div>
 
     <nav class="nav-links" id="navLinks">
@@ -39,12 +42,12 @@
 
   <main class="model-container">
     <div class="model-header">
-      <h1>Attassa Reactor v1.0</h1>
+      <h1>Carbon-mOD Reactor v1.0</h1>
       <p>Explore the internal architecture of our primary carbon recovery unit. Interactive hotspots show the filtration
         mesh and heat exchange modules.</p>
     </div>
     <div class="sketchfab-embed-wrapper">
-      <iframe title="Attassa" class="model-iframe" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+      <iframe title="Carbon-mOD" class="model-iframe" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
         webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking"
         src="https://sketchfab.com/models/9e9ee8c63ad44a6180e16bd5ef9a7c88/embed?autospin=0.5&autostart=1&ui_controls=1&ui_infos=0">
       </iframe>
@@ -57,6 +60,7 @@
   </footer>
 
   <script>
+    // === Hamburger Menu ===
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
@@ -64,6 +68,29 @@
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
+
+    // === Dynamic Model Height ===
+    // Measures the real heights of navbar and model-header at runtime,
+    // then sets the iframe wrapper to fill the exact remaining space.
+    const navbar = document.querySelector('.navbar');
+    const modelHeader = document.querySelector('.model-header');
+    const embedWrapper = document.querySelector('.sketchfab-embed-wrapper');
+    const footer = document.querySelector('.footer');
+
+    function setModelHeight() {
+      const navH = navbar.offsetHeight;
+      const headerH = modelHeader.offsetHeight;
+      const footerH = footer ? footer.offsetHeight : 0;
+      const remaining = window.innerHeight - navH - headerH - footerH;
+      embedWrapper.style.height = Math.max(remaining, 300) + 'px';
+    }
+
+    // Run immediately and on every resize
+    setModelHeight();
+    window.addEventListener('resize', setModelHeight);
+
+    // Also re-run after fonts/images load (affects heights)
+    window.addEventListener('load', setModelHeight);
   </script>
 </body>
 
