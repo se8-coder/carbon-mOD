@@ -58,8 +58,8 @@
 
   <!-- HOW IT WORKS SECTION -->
   <section class="how-it-works">
-    <h2>Advanced Carbon Recovery Lifecycle</h2>
-    <div class="workflow-grid">
+    <h2 class="reveal">Advanced Carbon Recovery Lifecycle</h2>
+    <div class="workflow-grid reveal-stagger">
       <div class="step">
         <div class="step-num">01</div>
         <h3>Capture</h3>
@@ -83,8 +83,8 @@
 
   <!-- FEATURE SECTION -->
   <section class="features">
-    <h2>Technological Advantages</h2>
-    <div class="feature-grid">
+    <h2 class="reveal">Technological Advantages</h2>
+    <div class="feature-grid reveal-stagger">
       <div class="feature">
         <h3>Molecular Precision</h3>
         <p>Utilizing nano-scale filtration, Carbon mOD achieves purity levels previously unattainable in high-volume
@@ -105,32 +105,57 @@
 
   <!-- ABOUT PREVIEW -->
   <section class="about-preview">
-    <div class="about-content">
+    <div class="about-content reveal">
       <h2>Building the Future of Clean Energy</h2>
       <p>At the heart of our mission is a commitment to turn carbon emissions into opportunity. We’re developing clean,
         scalable technologies that redefine how industries think about waste and energy.</p>
-      <a href="about.html" class="btn-secondary">Learn More</a>
+      <a href="about.html" class="btn-secondary" style="margin-top: 2rem;">Learn More</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="model.html">Model</a>
+      <a href="team.html">Team</a>
+      <a href="join.html">Join</a>
+    </nav>
     <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
   </footer>
 
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
   <script>
+    // === Hamburger ===
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
+
+    // === Scroll Reveal ===
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // === Back to Top ===
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
-</body>
-
-</html>
-
 </body>
 
 </html>

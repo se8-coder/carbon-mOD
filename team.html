@@ -49,10 +49,10 @@
     </div>
   </section>
 
-  <!-- TEAM SECTION -->
+  <!-- TEAM LEADERSHIP -->
   <section class="team-section">
-    <h2>The Minds Behind Carbon mOD</h2>
-    <div class="team-grid">
+    <h2 class="reveal">The Lexa Engineering Group</h2>
+    <div class="team-grid reveal-stagger">
 
       <div class="team-card">
         <div class="team-img-wrapper">
@@ -60,7 +60,7 @@
         </div>
         <div class="team-info">
           <h3>HASHIMWEYESU Jean de Dieu</h3>
-          <span class="role">Chief Executive Officer</span>
+          <span class="role">Marketing Officer</span>
           <p>A visionary leader with a background in sustainable engineering. Jean de Dieu oversees the strategic
             direction of Carbon mOD, focusing on high-level partnerships and global scaling of our carbon recovery
             technology.</p>
@@ -98,7 +98,7 @@
         </div>
         <div class="team-info">
           <h3>ISHYA Rugema Achille</h3>
-          <span class="role">Marketing & Sales Lead</span>
+          <span class="role">CEO, Project Owner & Manager</span>
           <p>As the bridge between our tech and the world, Achille spearheads our market entry strategies. He is
             dedicated to educating industries on the economic benefits of carbon circularity.</p>
         </div>
@@ -116,28 +116,51 @@
         Our culture is built around collaboration, continuous learning, and a shared passion for pushing boundaries.
         We’re a team that experiments fearlessly, refines relentlessly, and celebrates every detail.
       </p>
-      <a href="index.html" class="btn-primary">Dive Back</a>
+      <a href="index.html" class="btn-primary" style="margin-top: 2rem;">Dive Back</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="model.html">Model</a>
+      <a href="team.html">Team</a>
+      <a href="join.html">Join</a>
+    </nav>
     <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
   </footer>
 
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
   <script>
+    // === Hamburger ===
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
+
+    // === Scroll Reveal ===
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // === Back to Top ===
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
-</body>
-
-</html>
-
 </body>
 
 </html>
