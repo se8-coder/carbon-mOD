@@ -19,7 +19,10 @@
     <!-- NAVBAR -->
     <header class="navbar">
         <div class="logo">
-            <p>Carbon <span>mOD</span> <a href="index.html"><img src="image (2).png" alt="Logo"></a> </p>
+            <a href="index.html" class="logo-link">
+                <img src="image (2).png" alt="Carbon mOD Logo">
+                <span>Carbon <em>mOD</em></span>
+            </a>
         </div>
 
         <nav class="nav-links" id="navLinks">
@@ -99,8 +102,25 @@
 
     <!-- FOOTER -->
     <footer class="footer">
+        <nav class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="model.html">Model</a>
+            <a href="team.html">Team</a>
+            <a href="join.html">Join</a>
+        </nav>
         <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
     </footer>
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
 
     <script>
         // === Hamburger Menu ===
@@ -144,6 +164,39 @@
                 customSelect.classList.remove('open');
             }
         });
+
+        // === Form Submit Toast ===
+        const form = document.getElementById('partnerForm');
+        const toast = document.getElementById('toast');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent actual submission for demo
+
+            // Show toast
+            toast.textContent = "Thank you! Your inquiry has been received.";
+            toast.classList.add('show');
+
+            // Reset form
+            form.reset();
+            selectDisplay.textContent = 'Industrial Partnership';
+            hiddenInput.value = 'industrial';
+            options.forEach(o => o.classList.remove('selected'));
+            options[0].classList.add('selected');
+
+            // Hide toast after 3s
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        });
+
+        // === Scroll Reveal ===
+        const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // === Back to Top ===
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
 

@@ -19,7 +19,10 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <p>Carbon <span>mOD</span> <a href="index.html"><img src="image (2).png" alt="Logo"></a> </p>
+      <a href="index.html" class="logo-link">
+        <img src="image (2).png" alt="Carbon mOD Logo">
+        <span>Carbon <em>mOD</em></span>
+      </a>
     </div>
 
     <nav class="nav-links" id="navLinks">
@@ -49,7 +52,7 @@
 
   <!-- OUR STORY -->
   <section class="about-section">
-    <div class="about-wrapper">
+    <div class="about-wrapper reveal">
       <div class="about-text">
         <h2>Our Origin</h2>
         <p>
@@ -71,8 +74,8 @@
 
   <!-- OUR VALUES -->
   <section class="values">
-    <h2>Principles of Innovation</h2>
-    <div class="values-grid">
+    <h2 class="reveal">Principles of Innovation</h2>
+    <div class="values-grid reveal-stagger">
       <div class="value-item">
         <h3>Radical Circularity</h3>
         <p>We believe every emission is a resource in the wrong place. Our system is designed to close the loop on
@@ -93,7 +96,7 @@
 
   <!-- MISSION STATEMENT -->
   <section class="mission">
-    <div class="mission-content">
+    <div class="mission-content reveal">
       <h2>The Mission</h2>
       <p>
         To accelerate the global transition to a carbon-neutral economy by turning industrial exhaust into a sustainable
@@ -105,7 +108,7 @@
 
   <!-- TECHNICAL SPECIFICATIONS -->
   <section class="tech-specs about-section">
-    <div class="about-wrapper">
+    <div class="about-wrapper reveal">
       <div class="about-text">
         <h2>Molecular Carbon Capture (MCC) Technology</h2>
         <p>Our proprietary MCC system utilizes a multi-stage electrochemical process to isolate CO2 and particulate
@@ -199,17 +202,44 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="model.html">Model</a>
+      <a href="team.html">Team</a>
+      <a href="join.html">Join</a>
+    </nav>
     <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
   </footer>
 
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
   <script>
+    // === Hamburger ===
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
+
+    // === Scroll Reveal ===
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // === Back to Top ===
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 

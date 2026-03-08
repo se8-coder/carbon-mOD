@@ -19,7 +19,10 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <p>Carbon <span>mOD</span> <a href="index.html"><img src="image (2).png" alt="Logo"></a> </p>
+      <a href="index.html" class="logo-link">
+        <img src="image (2).png" alt="Carbon mOD Logo">
+        <span>Carbon <em>mOD</em></span>
+      </a>
     </div>
 
     <nav class="nav-links" id="navLinks">
@@ -39,12 +42,12 @@
 
   <main class="model-container">
     <div class="model-header">
-      <h1>Attassa Reactor v1.0</h1>
+      <h1>Carbon-mOD Reactor v1.0</h1>
       <p>Explore the internal architecture of our primary carbon recovery unit. Interactive hotspots show the filtration
         mesh and heat exchange modules.</p>
     </div>
     <div class="sketchfab-embed-wrapper">
-      <iframe title="Attassa" class="model-iframe" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+      <iframe title="Carbon-mOD" class="model-iframe" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
         webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking"
         src="https://sketchfab.com/models/9e9ee8c63ad44a6180e16bd5ef9a7c88/embed?autospin=0.5&autostart=1&ui_controls=1&ui_infos=0">
       </iframe>
@@ -53,10 +56,26 @@
 
   <!-- FOOTER -->
   <footer class="footer">
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="model.html">Model</a>
+      <a href="team.html">Team</a>
+      <a href="join.html">Join</a>
+    </nav>
     <p>&copy; 2025 Carbon mOD. Crafted by The Ultimate Team.</p>
   </footer>
 
+  <!-- BACK TO TOP -->
+  <button id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
   <script>
+    // === Hamburger Menu ===
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
@@ -64,6 +83,41 @@
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('open');
     });
+
+    // === Dynamic Model Height ===
+    // Measures the real heights of navbar and model-header at runtime,
+    // then sets the iframe wrapper to fill the exact remaining space.
+    const navbar = document.querySelector('.navbar');
+    const modelHeader = document.querySelector('.model-header');
+    const embedWrapper = document.querySelector('.sketchfab-embed-wrapper');
+    const footer = document.querySelector('.footer');
+
+    function setModelHeight() {
+      const navH = navbar.offsetHeight;
+      const headerH = modelHeader.offsetHeight;
+      const footerH = footer ? footer.offsetHeight : 0;
+      const remaining = window.innerHeight - navH - headerH - footerH;
+      embedWrapper.style.height = Math.max(remaining, 300) + 'px';
+    }
+
+    // Run immediately and on every resize
+    setModelHeight();
+    window.addEventListener('resize', setModelHeight);
+
+    // Also re-run after fonts/images load (affects heights)
+    window.addEventListener('load', setModelHeight);
+
+    // === Scroll Reveal ===
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // === Back to Top ===
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 
